@@ -1,0 +1,60 @@
+# ========== Создание пациентов ==========
+
+# 1. Лёгкий гипотиреоз (секреция 30% от нормы)
+patient_mild = ThyrosimPatient(
+    weight_kg=70,
+    k_abs=0.80,
+    SR4=1.26,          # 30% от 4.2
+    SR3=0.09,          # 30% от 0.3
+    condition='mild hypothyroidism'
+)
+
+# 2. Умеренный гипотиреоз (секреция 17% от нормы, как в статье)
+patient_moderate = ThyrosimPatient(
+    weight_kg=70,
+    k_abs=0.80,
+    SR4=0.714,
+    SR3=0.051,
+    condition='moderate hypothyroidism'
+)
+
+# 3. Тяжёлый гипотиреоз (секреция 5% от нормы)
+patient_severe = ThyrosimPatient(
+    weight_kg=70,
+    k_abs=0.80,
+    SR4=0.21,
+    SR3=0.015,
+    condition='severe hypothyroidism'
+)
+
+# 4. Пациент с плохой абсорбцией (биодоступность 64%) и умеренным гипотиреозом
+patient_malabsorption = ThyrosimPatient(
+    weight_kg=70,
+    k_abs=0.64,
+    SR4=0.714,
+    SR3=0.051,
+    condition='hypothyroidism with malabsorption'
+)
+
+
+# 5. Пациент с индивидуальными вариациями метаболизма (например, ускоренная элиминация T4)
+patient_fast_metabolism = ThyrosimPatient(
+    weight_kg=70,
+    k_abs=0.80,
+    SR4=0.714,
+    SR3=0.051,
+    k_ex4=0.018,       # +50% от базового 0.012
+    k_ex3=0.052,       # +50% от 0.035
+    condition='hypothyroidism, fast metabolism'
+)
+
+# 6. Пациент с изменённой чувствительностью обратной связи (более высокий TSH при том же T4)
+patient_high_tsh_gain = ThyrosimPatient(
+    weight_kg=70,
+    k_abs=0.80,
+    SR4=0.714,
+    SR3=0.051,
+    tsh_gain=45.0,     # повышенная чувствительность
+    tsh_tau=120.0,     # более быстрая реакция
+    condition='hypothyroidism, high TSH gain'
+)
